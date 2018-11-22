@@ -1,0 +1,83 @@
+<!--
+	Alexandra Liaskovski-Balaba
+	101071309
+	alexandraliaskovskib@cmail.carleton.ca
+	
+	Howard Zhang
+	101069043
+	howardzhang@cmail.carleton.ca
+	
+	COMP2406 - Assignment #4
+	recipes.html
+	22nd November 2018, 10pm
+	
+	Testing: The page can be found at http://localhost:3000/recipes.html in the browser
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>:-) Recipe Returner :-)</title>
+		
+		<style>
+				body { background: #F0EBF4; }
+					
+				input[type=text] {
+					position: relative;
+					width: 20%;
+					box-sizing: border-box;
+					border: 2px solid #B39BC8;
+					border-radius: 4px;
+					font-size: 16px;
+					background-color: white;
+					background-image: url('searchicon.png');
+					background-position: 10px 10px; 
+					background-size: 22px;
+					background-color: #B39BC8;
+					background-repeat: no-repeat;
+					padding: 12px 20px 12px 40px;
+					-webkit-transition: width 0.4s ease-in-out;
+					transition: width 0.4s ease-in-out;
+					outline: none;
+				}
+
+				input[type=text]:focus {
+					width: 100%;
+				}
+			
+				#searchButton {
+					text-align: left;
+					position: relative;
+					top: 5px;
+					opacity: 0.8;
+					border: none;
+					font-size: 16px;
+					background-color: transparent;
+					padding: 5px 20px;
+					outline: none;
+				}
+				
+				#searchButton:hover {
+					border-bottom: 2px solid #000;
+				}
+				
+				#searchButton:focus {
+					color: #B39BC8;
+				}
+				
+				.grid-item {
+					background: #000;
+				}
+					
+		</style>
+	</head>
+
+	<body>
+		<div>
+			<div><input type = "text" id = "recipeTextField" value = ""></div>
+			<div><input type = "button" value = "Search" onClick="handleSearch()" id = "searchButton"></div>
+		</div>
+		<div class="grid-container" id = "recipes"></div>
+		<script src='recipeReturner.js'></script> <!--does this need to be at the end? -->
+	</body>
+</html>
