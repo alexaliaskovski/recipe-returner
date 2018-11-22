@@ -29,6 +29,7 @@ const http = require('http')
 const https = require('https')
 const JSON = express.json()
 const jsonParser = bodyParser.urlencoded({extended: true})
+const requestModule = require('request'); 	//install
 
 const PORT = process.env.PORT || 3000
 const ROOT_DIR = '/html'
@@ -47,6 +48,18 @@ app.use(function(req, res, next){
 })
 //returns static webpage, favicon, searchicon.png
 app.use(express.static(__dirname + ROOT_DIR))
+
+app.get('/recipes.html', function(req,res){
+	res.sendFile(__dirname + ROOT_DIR + '/' + 'recipes.html');
+});
+
+app.get('/recipes', function(req,res){
+	res.sendFile(__dirname + ROOT_DIR + '/' + 'recipes.html');
+});
+
+app.get('/', function(req, res){
+	res.sendFile(__dirname + ROOT_DIR + '/' + 'recipes.html');
+});
 
 //recieves post request for recipe info, req includes ingredients in JSON string
 //jsonParse automatically parses JSON string received at request (?)
@@ -78,13 +91,15 @@ app.post("/sendIngredient", jsonParser, function(req, res) {
 		
 		//does <something> when Food2Fork response is done
 		apiResponse.on('end', function() {
+			console.log(recipeData);
 			console.log("Food2Fork is done sending data.\n")
-			let ingredient = JSON.parse(recipeData).ingredient
-			console.log("ingredient: " + ingredient)
+			//let ingredient = JSON.parse(recipeData).ingredient
+			//console.log("ingredient: " + ingredient)
 			// *******************
 			// need to do something here, can maybe use parse/sendResponse functions, or something else?
 			// *******************
 			//response.send()
+			return res.contentType('application/json').json(recipeData)
 		})
 	}).end()
 })
