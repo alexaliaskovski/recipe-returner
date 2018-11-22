@@ -48,28 +48,25 @@ function handleSearch() {
 			
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
 				
-				console.log("The response recieved by the client was successful.")
+				console.log("The response received by the client was successful.")
+
+				let response = JSON.parse(JSON.parse(xhttp.responseText))
+				let recipeSection = document.getElementById("recipes")
 				
-				/*
-				let response = JSON.parse(xhttp.responseText)
-				let recipes = response.recipes
-				
-				//for each recipe in response, add it to the HTML
-				for (let recipe of recipes) {
-					
-					//<THIS NEEDS TO BE FIXED>
-					recipeDiv.innerHTML = recipeDiv.innerHTML + `
-					<div class="recipe">
+				//for each recipe in response, add to HTML
+				//NOTE: all elements between link div <a></a> are linked to recipe website
+				for (let i = 0; i < response.count; i++) {
+					let recipe = response.recipes[i]
+					console.log(recipe.image_url)
+					recipeSection.innerHTML = recipeSection.innerHTML +
+					`<div class="flex-item" class = "recipe">
 						<a href="${recipe.f2f_url}" target="_blank">
-							<img src=${recipe.image_url} />
-							<h2>${recipe.title}</h2>
+							<img src=${recipe.image_url} class = "recipe_img">
+							<p>${recipe.title}</p>
 						</a>
-					</div>
-					`
-				}*/
+					</div>`
+				}
 			}
 		}
 	}
 }
-
-	

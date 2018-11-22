@@ -22,9 +22,9 @@
 
 const express = require('express') 
 const logger = require('morgan')			//install
-const bodyParser = require('body-parser') 	//install
+const bodyParser = require('body-parser') 		//install
 const app = express()
-const API_KEY = 'b6da428dfea0809a81f1421f245c0cc2'
+const API_KEY = 'afee0b57a90e8dd6507d0e2a2e7d86d7'
 const http = require('http')
 const https = require('https')
 const JSON = express.json()
@@ -47,6 +47,18 @@ app.use(function(req, res, next){
 })
 //returns static webpage, favicon, searchicon.png
 app.use(express.static(__dirname + ROOT_DIR))
+
+app.get('/recipes.html', function(req,res){
+	res.sendFile(__dirname + ROOT_DIR + '/' + 'recipes.html');
+});
+
+app.get('/recipes', function(req,res){
+	res.sendFile(__dirname + ROOT_DIR + '/' + 'recipes.html');
+});
+
+app.get('/', function(req, res){
+	res.sendFile(__dirname + ROOT_DIR + '/' + 'recipes.html');
+});
 
 //recieves post request for recipe info, req includes ingredients in JSON string
 //jsonParse automatically parses JSON string received at request (?)
@@ -78,37 +90,24 @@ app.post("/sendIngredient", jsonParser, function(req, res) {
 		
 		//does <something> when Food2Fork response is done
 		apiResponse.on('end', function() {
+			console.log(recipeData);
 			console.log("Food2Fork is done sending data.\n")
-			let ingredient = JSON.parse(recipeData).ingredient
-			console.log("ingredient: " + ingredient)
-			// *******************
-			// need to do something here, can maybe use parse/sendResponse functions, or something else?
-			// *******************
-			//response.send()
+			return res.contentType('application/json').json(recipeData)
 		})
 	}).end()
 })
 
-//right now this function adds to the HTML, which wouldn't work bc its not linked to the html file. Need to send this info to client instead...
-function sendResponse(recipeData, res) {
-	var page = '<html><head><title>API Example</title></head>' +
-		'<body>' +
-		'<form method="post">' +
-		'Ingredient: <input name="ingredient"><br>' +
-		'<input type="submit" value="Get Recipe">' +
-		'</form>'
-	if (recipeData) {
-		let ingredient = JSON.parse(recipeData).ingredient
-		page += `<h1>Recipes</h1><p>` + recipeData + '</p>'
-	}
-	page += '</body></html>'
-	res.end(page);
-}
-
-
 /*		SERVER		*/
 
 app.listen(PORT, err => {
-  if(err) {console.log(err)}
-  else {console.log(`Server listening on port: ${PORT}`)}
+	if(err) {console.log(err)}
+	else {
+		console.log(`Server listening on port: ${PORT}`)
+		console.log(`Go to any of the following links to test:`)
+		console.log(`\t http://localhost:3000/recipes.html`)
+		console.log(`\t http://localhost:3000/recipes`)
+		console.log(`\t http://localhost:3000/index.html`)
+		console.log(`\t http://localhost:3000/`)
+		console.log(`\t http://localhost:3000`)
+	}
 })
