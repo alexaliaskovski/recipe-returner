@@ -47,8 +47,25 @@ function handleSearch() {
 			console.log("A response was heard by the client.")
 			
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
-				
+				let response = JSON.parse(xhttp.responseText)
 				console.log("The response recieved by the client was successful.")
+				console.log(response)
+				// json contents:
+				// count: # of recipes
+				// recipes: array of all the recipes, incl properties
+				
+				// PROPERTIES OF EACH RECIPE:
+				// publisher		
+				// f2f_url (food2fork url)	// either use this or the source_url
+				// title					// need this
+				// source_url				// probably need this
+				// recipe_id
+				// image_url				// need this
+				// social_rank
+				// publisher_url
+				
+				// insert each recipe into the div on the html file.
+				
 				
 				/*
 				let response = JSON.parse(xhttp.responseText)
