@@ -22,14 +22,13 @@
 
 const express = require('express') 
 const logger = require('morgan')			//install
-const bodyParser = require('body-parser') 	//install
+const bodyParser = require('body-parser') 		//install
 const app = express()
 const API_KEY = 'b6da428dfea0809a81f1421f245c0cc2'
 const http = require('http')
 const https = require('https')
 const JSON = express.json()
 const jsonParser = bodyParser.urlencoded({extended: true})
-const requestModule = require('request'); 	//install
 
 const PORT = process.env.PORT || 3000
 const ROOT_DIR = '/html'
