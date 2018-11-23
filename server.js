@@ -24,7 +24,7 @@ const express = require('express')
 const logger = require('morgan')			//install
 const bodyParser = require('body-parser') 		//install
 const app = express()
-const API_KEY = 'afee0b57a90e8dd6507d0e2a2e7d86d7'
+const API_KEY = 'de2f9b8e559d1d93bb032e45caf4cf27'
 const http = require('http')
 const https = require('https')
 const JSON = express.json()
@@ -48,17 +48,9 @@ app.use(function(req, res, next){
 //returns static webpage, favicon, searchicon.png
 app.use(express.static(__dirname + ROOT_DIR))
 
-app.get('/recipes.html', function(req,res){
+app.get('/*', function(req, res){
 	res.sendFile(__dirname + ROOT_DIR + '/' + 'recipes.html');
-});
-
-app.get('/recipes', function(req,res){
-	res.sendFile(__dirname + ROOT_DIR + '/' + 'recipes.html');
-});
-
-app.get('/', function(req, res){
-	res.sendFile(__dirname + ROOT_DIR + '/' + 'recipes.html');
-});
+})
 
 //recieves post request for recipe info, req includes ingredients in JSON string
 //jsonParse automatically parses JSON string received at request (?)
