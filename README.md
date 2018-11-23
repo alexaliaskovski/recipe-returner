@@ -21,15 +21,18 @@
 */
 
 Files:				
-	server.js \n
-	package.json
-	html/recipes.html
-	html/recipeReturner.js
-	html/searchicon.png
-	node_modules/... (it is recommended to reinstall the node modules, will elaborate on this later)
+- server.js
+- package.json
+- html/recipes.html
+- html/recipeReturner.js
+- html/searchicon.png
 				
-Node Version:	v8.11.4
-OS:		Windows 10
+Node Version:	
+v8.11.4
+
+OS:		
+Windows 10
+
 Required Code/Packages:	
 - node.js
 - express.js
@@ -67,8 +70,7 @@ Launch:
 
 Execution:
 			
-1. Navigate to any of the above URLs to access the webpage.
-	a. you can provide a query string by entering: "?ingredient=..." after the main url. This will search for recipes containing the ingredients that were provided. IF there are multiple ingredients that are needed, separate each one using a comma. For example: you can test this feature using "localhost:3000/?ingredient=Basil,Dill".
+1. Navigate to any of the above URLs to access the webpage. You can provide a query string by entering: "?ingredient=..." after the main url. This will search for recipes containing the ingredients that were provided. IF there are multiple ingredients that are needed, separate each one using a comma. For example: you can test this feature using "localhost:3000/?ingredient=Basil,Dill".
 2. Enter in ingredients in the textbox, while also separating multiple ingredients using commas. Press the "Submit" button once finished. The app will then request recipes from the API using the provided ingredients, and return them in the form of clickable pictures and titles below the textbox.
 3. Repeat as needed. The boxes below will refill with new recipes each time.
 
