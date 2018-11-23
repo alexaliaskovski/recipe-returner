@@ -21,7 +21,7 @@
 */
 
 Files:				
-	server.js
+	server.js \n
 	package.json
 	html/recipes.html
 	html/recipeReturner.js
